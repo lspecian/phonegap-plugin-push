@@ -247,7 +247,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         boolean soundOption = prefs.getBoolean(SOUND, true);
         boolean vibrateOption = prefs.getBoolean(VIBRATE, true);
 
-        if(extras.getString("silence") != null) {
+        if(extras.getString("silence") != null && extras.getString("silence") == "true") {
           soundOption = false;
           vibrateOption = false;
         }
