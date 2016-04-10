@@ -246,6 +246,12 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         String localIconColor = prefs.getString(ICON_COLOR, null);
         boolean soundOption = prefs.getBoolean(SOUND, true);
         boolean vibrateOption = prefs.getBoolean(VIBRATE, true);
+
+        if(extras.getString("silence") != null) {
+          soundOption = false;
+          vibrateOption = false;
+        }
+
         Log.d(LOG_TAG, "stored icon=" + localIcon);
         Log.d(LOG_TAG, "stored iconColor=" + localIconColor);
         Log.d(LOG_TAG, "stored sound=" + soundOption);
@@ -299,6 +305,8 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
          */
         if (soundOption) {
             setNotificationSound(context, extras, mBuilder);
+        } else {
+          mBuilder.setSound(false);
         }
 
         /*
@@ -400,6 +408,8 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         } else {
             if (vibrateOption) {
                 mBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+            } else {
+              mBuilder.setVibrate(false);
             }
         }
     }
