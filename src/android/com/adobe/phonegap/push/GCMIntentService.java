@@ -306,7 +306,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         if (soundOption) {
             setNotificationSound(context, extras, mBuilder);
         } else {
-          mBuilder.setSound(false);
+          mBuilder.setSound(null);
         }
 
         /*
@@ -409,7 +409,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             if (vibrateOption) {
                 mBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
             } else {
-              mBuilder.setVibrate(false);
+              mBuilder.setVibrate(null);
             }
         }
     }
